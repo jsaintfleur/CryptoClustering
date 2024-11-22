@@ -3,11 +3,12 @@
 <h1 style="font-size: 3em;">CryptoClustering</h1>  
 <h2 style="font-size: 2em;">Classifying Cryptocurrencies Based on Price Fluctuations</h2>
 
-<img src="optimal_k_inertia.png" alt="Optimal K Elbow Curve" style="width:100%; height:500px; object-fit:cover;">
+<img src="images/optimal_k_inertia.png" alt="Optimal K Elbow Curve" style="width:80%; height:auto; object-fit:contain;">
 
 </div>
 
 This project leverages **K-Means clustering** and **Principal Component Analysis (PCA)** to classify cryptocurrencies based on their price percentage changes across various timeframes. By reducing data dimensionality and identifying patterns, the project enables a deeper understanding of cryptocurrency behavior and grouping.
+
 
 ---
 
