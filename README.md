@@ -137,16 +137,51 @@ Open and run the `CryptoClustering.ipynb` notebook, which contains all code for 
 ## Visualizations
 
 ### 1. Optimal Clustering (Original Data)
-<img src="images/optimal_k_inertia.png" alt="Elbow Curve for Original Data" style="width:100%; height:400px; object-fit:cover;">
+
+![Optimal Clustering - Original Data](images/optimal_k_inertia.png)
+
+**Description**: This elbow curve demonstrates the relationship between the number of clusters (`k`) and the inertia, which measures the within-cluster sum of squared distances. The goal is to find the "elbow point," where increasing the number of clusters no longer significantly reduces inertia.
+
+**Observation**: The "elbow" in this curve is observed at `k = 2`, suggesting that the data can be effectively clustered into two groups without overfitting. This result is based on the original dataset.
+
+---
 
 ### 2. Optimal Clustering (PCA Data)
-<img src="images/elbow_curve_pca_data.png" alt="Elbow Curve for PCA Data" style="width:100%; height:400px; object-fit:cover;">
+
+![Optimal Clustering - PCA Data](images/elbow_curve_pca_data.png)
+
+**Description**: This elbow curve applies the same method as above but uses the reduced dataset after applying Principal Component Analysis (PCA). PCA compresses the data into fewer dimensions while preserving key variance.
+
+**Observation**: For the PCA-transformed data, the "elbow" occurs at `k = 3`. This indicates that the PCA reduction uncovers finer granularity in the data, justifying the use of three clusters for better segmentation.
+
+---
 
 ### 3. Cryptocurrency Clusters
-<img src="images/cryptocurrency_clusters_price_change_pct.png" alt="Cryptocurrency Clusters" style="width:100%; height:400px; object-fit:cover;">
+
+![Cryptocurrency Clusters](images/cryptocurrency_clusters_price_change_pct.png)
+
+**Description**: This scatter plot displays the clustering of cryptocurrencies based on 24-hour and 7-day price percentage changes. Each color represents a distinct cluster assigned by the K-Means algorithm.
+
+**Observation**: Cryptocurrencies are distributed into clusters, with notable differences in their short-term price movements. Cluster centroids capture the average behavior of each group, helping identify patterns such as outliers or distinct subgroups of volatile and stable assets.
+
+---
 
 ### 4. PCA Feature Influence
-<img src="images/pca_weights_heatmap.png" alt="PCA Weights Heatmap" style="width:100%; height:400px; object-fit:cover;">
+
+![PCA Feature Influence](images/pca_weights_heatmap.png)
+
+**Description**: This heatmap shows the weight of each original feature on the principal components extracted by PCA. The values indicate the contribution of each feature to the respective principal components.
+
+**Observation**:
+- **PC1**: Positively influenced by 1-year price changes and negatively by 24-hour changes.
+- **PC2**: Dominated by mid-term metrics (e.g., 30-day and 14-day price changes).
+- **PC3**: Primarily affected by weekly price changes.  
+This analysis highlights how different timeframes contribute to clustering, allowing better understanding of price behavior.
+
+---
+
+These visualizations collectively provide insights into the clustering process, the underlying data structure, and the influence of various features, helping to classify cryptocurrencies effectively.
+
 
 ---
 
