@@ -1,83 +1,191 @@
-# CryptoClustering
+<div align="center">
 
-## Overview
+<h1 style="font-size: 3em;">CryptoClustering</h1>  
+<h2 style="font-size: 2em;">Classifying Cryptocurrencies Based on Price Fluctuations</h2>
 
-This project uses the **K-Means clustering algorithm** and **Principal Component Analysis (PCA)** to classify cryptocurrencies based on their price fluctuations across various timeframes. By leveraging machine learning and dimensionality reduction techniques, we aim to uncover patterns in cryptocurrency behavior and group assets with similar performance characteristics.
+<img src="optimal_k_inertia.png" alt="Optimal K Elbow Curve" style="width:100%; height:500px; object-fit:cover;">
 
----
+</div>
 
-## Key Features
-
-- **Clustering with K-Means**: Group cryptocurrencies into clusters based on their price changes.
-- **Dimensionality Reduction with PCA**: Reduce the complexity of the dataset while preserving essential information.
-- **Optimal Clustering**: Use the Elbow Method to determine the best number of clusters for both raw and PCA-transformed data.
-- **Visualizations**: Provide clear plots to display clustering results, feature influences, and optimal clustering.
+This project leverages **K-Means clustering** and **Principal Component Analysis (PCA)** to classify cryptocurrencies based on their price percentage changes across various timeframes. By reducing data dimensionality and identifying patterns, the project enables a deeper understanding of cryptocurrency behavior and grouping.
 
 ---
 
-## Workflow
-
-### 1. Data Preparation
-- Collect cryptocurrency data, focusing on price percentage changes over various timeframes (e.g., 24 hours, 7 days, 30 days).
-- Normalize the data using `StandardScaler` to ensure consistent scaling.
-
-### 2. Optimal Cluster Selection
-- Apply the **Elbow Method** on both original and PCA-transformed data to identify the optimal number of clusters (`k`).
-- Analyze inertia values to determine the "elbow" point, where additional clusters offer diminishing returns.
-
-### 3. Dimensionality Reduction with PCA
-- Perform PCA to reduce the dataset's dimensionality to three principal components, retaining the most critical information.
-- Analyze the influence of each feature on the principal components using a heatmap.
-
-### 4. Clustering and Visualization
-- Apply the K-Means algorithm to both raw and PCA-reduced data.
-- Visualize the clusters in a 2D scatter plot to highlight relationships and groupings.
-- Compare clustering results between raw and PCA-transformed data.
+## Table of Contents
+- [User Story](#user-story)
+- [Project Overview](#project-overview)
+- [Goals](#goals)
+- [Data Sources](#data-sources)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Methodology](#methodology)
+- [Visualizations](#visualizations)
+- [Insights](#insights)
+- [Future Opportunities](#future-opportunities)
+- [License](#license)
 
 ---
 
-## Results
+## User Story
 
-### Optimal Number of Clusters
-- **Original Data**: The Elbow Method suggests an optimal `k = 2`.
-- **PCA-Transformed Data**: PCA refinement indicates an optimal `k = 3`.
+Meet **Sophia**, a cryptocurrency enthusiast looking to diversify her portfolio. Sophia is curious about how cryptocurrencies cluster together based on their price volatility over time and whether such clusters can inform her investment strategy. 
 
-### Clustering Insights
-- Cryptocurrencies were successfully grouped into distinct clusters based on their price percentage changes.
-- PCA clusters revealed more nuanced groupings, emphasizing the importance of mid- and short-term metrics.
+Our goal is to help Sophia analyze and classify cryptocurrencies based on their price movements using machine learning. By clustering cryptocurrencies into distinct groups, Sophia can gain valuable insights into market behavior, ultimately guiding her portfolio decisions.
 
-### Feature Analysis
-- **PC1**: Positively influenced by long-term metrics (e.g., `price_change_percentage_1y`) and negatively by short-term changes (`price_change_percentage_24h`).
-- **PC2**: Driven by mid-term metrics (e.g., `price_change_percentage_30d`, `price_change_percentage_14d`).
-- **PC3**: Dominated by weekly changes (`price_change_percentage_7d`).
+---
+
+## Project Overview
+
+This project explores patterns in cryptocurrency price changes over multiple timeframes, from daily to yearly, using the following approach:
+1. **K-Means Clustering**: Categorize cryptocurrencies into clusters based on price change metrics.
+2. **Principal Component Analysis (PCA)**: Reduce dataset dimensionality to focus on essential features and visualize cluster separations.
+3. **Elbow Method**: Determine the optimal number of clusters for effective classification.
+
+By combining these techniques, we classify cryptocurrencies into meaningful groups that highlight similarities and differences in market behavior, empowering investors like Sophia to make data-driven decisions.
+
+---
+
+### Goals
+
+1. **Cluster Cryptocurrencies**: Group cryptocurrencies based on price volatility using the K-Means algorithm.
+2. **Dimensionality Reduction**: Apply PCA to reduce data complexity and retain the most critical features.
+3. **Determine Optimal Clusters**: Use the Elbow Method to find the best value for `k`.
+4. **Visualize Patterns**: Create clear visualizations to analyze and interpret the clusters effectively.
+
+---
+
+## Data Sources
+
+The data includes price percentage changes for various cryptocurrencies across different timeframes:
+- **24-Hour Price Change Percentage** (`price_change_percentage_24h`)
+- **7-Day Price Change Percentage** (`price_change_percentage_7d`)
+- **30-Day Price Change Percentage** (`price_change_percentage_30d`)
+- **60-Day Price Change Percentage** (`price_change_percentage_60d`)
+- **200-Day Price Change Percentage** (`price_change_percentage_200d`)
+- **1-Year Price Change Percentage** (`price_change_percentage_1y`)
+
+---
+
+## Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/jsaintfleur/CryptoClustering.git
+   cd CryptoClustering
+
+2. **Install Dependencies**
+Ensure all required packages are installed. You can install them using:
+
+```bash
+!pip install pandas scikit-learn matplotlib hvplot seaborn
+
+```
+
+3. **Dependencies**
+Below is the core set of dependencies used in this project:
+```python
+import pandas as pd
+from sklearn.cluster import KMeans
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+import hvplot.pandas
+import seaborn as sns
+
+```
+
+4. **Run the Project**
+Open the Jupyter Notebook and execute the analysis:
+
+``` bash
+jupyter notebook CryptoClustering.ipynb
+```
+
+
+--- 
+
+## Usage
+
+### Run the Notebook
+Open and run the `CryptoClustering.ipynb` notebook, which contains all code for preprocessing, clustering, and visualization.
+
+
+### Data Analysis and Clustering
+
+1. **Preprocess Data:** Standardize the data using StandardScaler to ensure consistent scaling.
+2. **Find Optimal Clusters:** Use the Elbow Method to determine the optimal value for k.
+3. **Apply PCA:** Reduce the dimensionality of the dataset for more manageable visualization and analysis.
+4. **Cluster and Visualize:** Use K-Means to create clusters and analyze results through scatter plots and heatmaps.
+
+---
+
+## Methodology
+
+1. **Data Preprocessing**
+- Standardized price change percentages using StandardScaler to ensure all features have a mean of 0 and standard deviation of 1.
+2. **Finding Optimal Clusters**
+- Applied the Elbow Method on both raw and PCA-reduced data to identify the optimal number of clusters (k).
+- Analyzed inertia values to locate the "elbow" point, indicating diminishing returns for increasing k.
+3. **Principal Component Analysis**
+- Reduced the dataset to three principal components while retaining the majority of variance.
+- Visualized PCA results to understand feature contributions and clustering separations.
+4. **K-Means Clustering**
+- Grouped cryptocurrencies into clusters using K-Means for both raw and PCA-reduced data.
+- Visualized clustering results through scatter plots and PCA component weights heatmaps.
 
 ---
 
 ## Visualizations
 
-1. **Optimal Clustering (Original Data)**
-   ![Optimal K Inertia](optimal_k_inertia.png)
+### 1. Optimal Clustering (Original Data)
+<img src="images/optimal_k_inertia.png" alt="Elbow Curve for Original Data" style="width:100%; height:400px; object-fit:cover;">
 
-2. **Optimal Clustering (PCA Data)**
-   ![Elbow Curve for PCA Data](elbow_curve_pca_data.png)
+### 2. Optimal Clustering (PCA Data)
+<img src="images/elbow_curve_pca_data.png" alt="Elbow Curve for PCA Data" style="width:100%; height:400px; object-fit:cover;">
 
-3. **Cluster Visualization**
-   ![Cryptocurrency Clusters](cryptocurrency_clusters_price_change_pct.png)
+### 3. Cryptocurrency Clusters
+<img src="images/cryptocurrency_clusters_price_change_pct.png" alt="Cryptocurrency Clusters" style="width:100%; height:400px; object-fit:cover;">
 
-4. **PCA Feature Influence**
-   ![PCA Weights Heatmap](pca_weights_heatmap.png)
+### 4. PCA Feature Influence
+<img src="images/pca_weights_heatmap.png" alt="PCA Weights Heatmap" style="width:100%; height:400px; object-fit:cover;">
 
 ---
 
-## Future Enhancements
+---
 
-- **Dynamic Data**: Integrate real-time cryptocurrency data for dynamic cluster updates.
-- **Additional Features**: Include trading volume, market capitalization, and sentiment analysis to refine clustering.
-- **Predictive Modeling**: Combine clustering with forecasting models to predict future price movements and cluster shifts.
+## Insights
+
+### Optimal Clusters
+- **Original Data**: Best k = 2.
+- **PCA Data**: Best k = 3.
+
+### Cluster Characteristics
+- **PCA Clusters**: Reveal more nuanced groupings, highlighting the significance of long-term and mid-term price changes.
+
+### Feature Influence
+- **PC1**: Positively influenced by 1-year price changes and negatively by 24-hour changes.
+- **PC2**: Driven by mid-term metrics (e.g., 30-day, 14-day changes).
+- **PC3**: Dominated by weekly changes.
+
+---
+
+## Future Opportunities
+
+### Dynamic Data Integration
+- Incorporate real-time cryptocurrency data for continuous clustering updates.
+
+### Expanded Feature Set
+- Include additional metrics like trading volume, market capitalization, and social sentiment analysis.
+
+### Predictive Modeling
+- Combine clustering insights with time series forecasting for predicting future price movements.
+
+### Interactive Dashboards
+- Develop user-friendly dashboards to visualize clustering results and trends dynamically.
 
 ---
 
 ## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
+[Back to Top](#table-of-contents)
