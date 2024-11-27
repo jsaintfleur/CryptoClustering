@@ -58,6 +58,7 @@ By combining these techniques, we classify cryptocurrencies into meaningful grou
 The data includes price percentage changes for various cryptocurrencies across different timeframes:
 - **24-Hour Price Change Percentage** (`price_change_percentage_24h`)
 - **7-Day Price Change Percentage** (`price_change_percentage_7d`)
+- **14-Day Price Change Percentage** (`price_change_percentage_14d`)
 - **30-Day Price Change Percentage** (`price_change_percentage_30d`)
 - **60-Day Price Change Percentage** (`price_change_percentage_60d`)
 - **200-Day Price Change Percentage** (`price_change_percentage_200d`)
@@ -71,6 +72,7 @@ The data includes price percentage changes for various cryptocurrencies across d
    ```bash
    git clone https://github.com/jsaintfleur/CryptoClustering.git
    cd CryptoClustering
+
 
 2. **Install Dependencies**
 Ensure all required packages are installed. You can install them using:
@@ -136,52 +138,96 @@ Open and run the `CryptoClustering.ipynb` notebook, which contains all code for 
 
 ## Visualizations
 
-### 1. Optimal Clustering (Original Data)
-
-![Optimal Clustering - Original Data](images/optimal_k_inertia.png)
-
-**Description**: This elbow curve demonstrates the relationship between the number of clusters (`k`) and the inertia, which measures the within-cluster sum of squared distances. The goal is to find the "elbow point," where increasing the number of clusters no longer significantly reduces inertia.
-
-**Observation**: The "elbow" in this curve is observed at `k = 2`, suggesting that the data can be effectively clustered into two groups without overfitting. This result is based on the original dataset.
+This section presents key visualizations generated during the clustering and PCA processes. Each figure is accompanied by a description and observations.
 
 ---
 
-### 2. Optimal Clustering (PCA Data)
+### 1. Elbow Curve for PCA Data
 
-![Optimal Clustering - PCA Data](images/elbow_curve_pca_data.png)
+![Elbow Curve for PCA Data](elbow_curve_pca.png)
 
-**Description**: This elbow curve applies the same method as above but uses the reduced dataset after applying Principal Component Analysis (PCA). PCA compresses the data into fewer dimensions while preserving key variance.
+**Description:**  
+This plot shows how the inertia decreases as the number of clusters (`k`) increases. The "elbow point" represents the optimal number of clusters where adding more clusters provides diminishing returns in reducing inertia.  
 
-**Observation**: For the PCA-transformed data, the "elbow" occurs at `k = 3`. This indicates that the PCA reduction uncovers finer granularity in the data, justifying the use of three clusters for better segmentation.
+**Observation:**  
+For the PCA-reduced data, the optimal number of clusters is **3**, as indicated by the elbow at \(k = 3\).
+
+---
+
+### 2. Feature Contributions to Principal Components (PCA)
+
+#### Heatmap of Feature Contributions
+
+![PCA Feature Contributions Heatmap](heatmap_pca.png)
+
+**Description:**  
+This heatmap visualizes how each feature contributes to the three principal components (PC1, PC2, and PC3). Positive contributions are shown in green, while negative contributions are shown in red.  
+
+**Observation:**  
+- **PC1**: Long-term metrics like 1-year and 200-day price changes have the highest positive contributions.  
+- **PC2**: Mid-term metrics like 30-day and 14-day price changes dominate.  
+- **PC3**: Short-term volatility (7-day changes) has the strongest positive influence, while the 60-day change negatively influences this component.
+
+---
+
+#### Bar Plots for Individual Principal Components
+
+- **PC1 Contributions**
+  ![PC1 Contributions](weight_pca1.png)
+
+  **Observation:**  
+  - The 1-year and 200-day price changes significantly contribute to PC1.  
+  - Short-term changes (e.g., 24-hour change) negatively influence this component.
+
+- **PC2 Contributions**
+  ![PC2 Contributions](weight_pca2.png)
+
+  **Observation:**  
+  - PC2 is dominated by mid-term metrics like 30-day and 14-day changes.  
+  - Long-term metrics (e.g., 200-day change) have a small negative influence.
+
+- **PC3 Contributions**
+  ![PC3 Contributions](weight_pca3.png)
+
+  **Observation:**  
+  - The 7-day price change strongly influences PC3.  
+  - The 60-day change negatively contributes to this component.
 
 ---
 
 ### 3. Cryptocurrency Clusters
 
-![Cryptocurrency Clusters](images/cryptocurrency_clusters_price_change_pct.png)
+#### Scatter Plot: PCA Components (PC1 vs. PC2)
 
-**Description**: This scatter plot displays the clustering of cryptocurrencies based on 24-hour and 7-day price percentage changes. Each color represents a distinct cluster assigned by the K-Means algorithm.
+![Cryptocurrency Clusters (PCA)](crypto_clusters_pca1_pca2.png)
 
-**Observation**: Cryptocurrencies are distributed into clusters, with notable differences in their short-term price movements. Cluster centroids capture the average behavior of each group, helping identify patterns such as outliers or distinct subgroups of volatile and stable assets.
+**Description:**  
+This scatter plot visualizes the cryptocurrency clusters based on the first two principal components (PC1 and PC2). Each color represents a unique cluster identified by the K-Means algorithm.
+
+**Observation:**  
+- The clusters are well-separated in the PCA-reduced space.  
+- Cryptocurrencies within the same cluster exhibit similar long-term and mid-term price patterns.
+
+#### Scatter Plot: Raw Data (24-Hour vs. 7-Day Changes)
+
+![Cryptocurrency Clusters (Raw Data)](crypto_clusters_price_pct_24h_7day.png)
+
+**Description:**  
+This scatter plot visualizes clusters based on raw data, specifically the 24-hour and 7-day price changes. Colors represent different clusters.
+
+**Observation:**  
+- The clusters are influenced by short-term volatility.  
+- Cryptocurrencies with extreme 24-hour or 7-day changes often form distinct clusters.
 
 ---
 
-### 4. PCA Feature Influence
+### Summary of Visualizations
 
-![PCA Feature Influence](images/pca_weights_heatmap.png)
+1. **Elbow Curve**: Identifies optimal clusters for both PCA-reduced and raw data.
+2. **Feature Contributions**: Highlights the influence of different price change timeframes on each principal component.
+3. **Cluster Visualizations**: Scatter plots showcase cluster separations in PCA space and raw feature space, emphasizing how cryptocurrencies with similar price behaviors are grouped.
 
-**Description**: This heatmap shows the weight of each original feature on the principal components extracted by PCA. The values indicate the contribution of each feature to the respective principal components.
-
-**Observation**:
-- **PC1**: Positively influenced by 1-year price changes and negatively by 24-hour changes.
-- **PC2**: Dominated by mid-term metrics (e.g., 30-day and 14-day price changes).
-- **PC3**: Primarily affected by weekly price changes.  
-This analysis highlights how different timeframes contribute to clustering, allowing better understanding of price behavior.
-
----
-
-These visualizations collectively provide insights into the clustering process, the underlying data structure, and the influence of various features, helping to classify cryptocurrencies effectively.
-
+These visualizations provide insights into cryptocurrency market behavior and enable more informed investment decisions.
 
 ---
 
@@ -190,32 +236,41 @@ These visualizations collectively provide insights into the clustering process, 
 ## Insights
 
 ### Optimal Clusters
-- **Original Data**: Best k = 2.
-- **PCA Data**: Best k = 3.
+- **Original Data**: Best \( k = 4 \). Clusters reflect short-term and long-term price changes, with well-defined separations between groups.
+- **PCA Data**: Best \( k = 3 \). Clusters emphasize broader trends, reducing noise and focusing on meaningful patterns derived from the principal components.
 
 ### Cluster Characteristics
-- **PCA Clusters**: Reveal more nuanced groupings, highlighting the significance of long-term and mid-term price changes.
+- **Original Clusters**: Highlight variations across short-term (e.g., 24-hour, 7-day changes) and long-term trends. Cryptocurrencies with high short-term volatility form distinct clusters.
+- **PCA Clusters**: Capture nuanced groupings by combining the influence of long-term and mid-term price metrics, offering a more holistic view of market behavior.
 
 ### Feature Influence
-- **PC1**: Positively influenced by 1-year price changes and negatively by 24-hour changes.
-- **PC2**: Driven by mid-term metrics (e.g., 30-day, 14-day changes).
-- **PC3**: Dominated by weekly changes.
+- **PC1**: Strongly influenced by long-term metrics like 1-year and 200-day price changes (positive), while 24-hour changes negatively affect it.
+- **PC2**: Dominated by mid-term metrics such as 30-day and 14-day price changes, highlighting intermediate trends.
+- **PC3**: Short-term volatility is the main driver, with the 7-day price change being the strongest positive contributor and the 60-day change contributing negatively.
 
 ---
 
 ## Future Opportunities
 
 ### Dynamic Data Integration
-- Incorporate real-time cryptocurrency data for continuous clustering updates.
+- Incorporate live cryptocurrency data streams to enable real-time cluster updates and analysis.
 
 ### Expanded Feature Set
-- Include additional metrics like trading volume, market capitalization, and social sentiment analysis.
+- Integrate additional metrics such as:
+  - **Market Sentiment**: Analyze social media and news to gauge investor sentiment.
+  - **Trading Volume**: Understand liquidity trends within clusters.
+  - **Market Cap**: Group cryptocurrencies by relative size and influence.
 
 ### Predictive Modeling
-- Combine clustering insights with time series forecasting for predicting future price movements.
+- Utilize cluster insights to develop predictive models for:
+  - Future price movements.
+  - Volatility patterns within specific clusters.
 
 ### Interactive Dashboards
-- Develop user-friendly dashboards to visualize clustering results and trends dynamically.
+- Build dynamic, user-friendly dashboards that allow users to:
+  - Visualize cluster compositions and trends.
+  - Explore feature contributions to each cluster.
+  - Monitor changes in real-time as new data is integrated.
 
 ---
 
