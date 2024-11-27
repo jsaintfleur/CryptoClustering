@@ -179,12 +179,16 @@ This heatmap visualizes how each feature contributes to the three principal comp
   - The 1-year and 200-day price changes significantly contribute to PC1.  
   - Short-term changes (e.g., 24-hour change) negatively influence this component.
 
+  ---
+
 - **PC2 Contributions**
   ![PC2 Contributions](images/weight_pca2.png)
 
   **Observation:**  
   - PC2 is dominated by mid-term metrics like 30-day and 14-day changes.  
   - Long-term metrics (e.g., 200-day change) have a small negative influence.
+
+  ---
 
 - **PC3 Contributions**
   ![PC3 Contributions](images/weight_pca3.png)
@@ -207,6 +211,8 @@ This scatter plot visualizes the cryptocurrency clusters based on the first two 
 **Observation:**  
 - The clusters are well-separated in the PCA-reduced space.  
 - Cryptocurrencies within the same cluster exhibit similar long-term and mid-term price patterns.
+
+---
 
 #### Scatter Plot: Raw Data (24-Hour vs. 7-Day Changes)
 
