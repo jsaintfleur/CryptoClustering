@@ -150,7 +150,7 @@ This section presents key visualizations generated during the clustering and PCA
 This plot shows how the inertia decreases as the number of clusters (`k`) increases. The "elbow point" represents the optimal number of clusters where adding more clusters provides diminishing returns in reducing inertia.  
 
 **Observation:**  
-For the PCA-reduced data, the optimal number of clusters is **3**, as indicated by the elbow at \(k = 3\).
+For the PCA-reduced data, the optimal number of clusters is **4**, as indicated by the elbow at \(k = 4\).
 
 ---
 
@@ -273,7 +273,7 @@ These visualizations provide insights into cryptocurrency market behavior and en
 ---
 
 ### Key Adjustments:
-1. Confirmed the optimal \( k \) values: 4 for raw data and 3 for PCA-reduced data.
+1. Confirmed the optimal \( k \) values: 4 for raw data and 4 for PCA-reduced data.
 2. Verified feature influences based on PCA weights.
 3. Aligned observations with the clustering visualizations and analysis outcomes.
 
