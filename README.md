@@ -144,7 +144,7 @@ This section presents key visualizations generated during the clustering and PCA
 
 ### 1. Elbow Curve for PCA Data
 
-![Elbow Curve for PCA Data](elbow_curve_pca.png)
+![Elbow Curve for PCA Data](images/elbow_curve_pca.png)
 
 **Description:**  
 This plot shows how the inertia decreases as the number of clusters (`k`) increases. The "elbow point" represents the optimal number of clusters where adding more clusters provides diminishing returns in reducing inertia.  
@@ -158,7 +158,7 @@ For the PCA-reduced data, the optimal number of clusters is **3**, as indicated 
 
 #### Heatmap of Feature Contributions
 
-![PCA Feature Contributions Heatmap](heatmap_pca.png)
+![PCA Feature Contributions Heatmap](images/heatmap_pca.png)
 
 **Description:**  
 This heatmap visualizes how each feature contributes to the three principal components (PC1, PC2, and PC3). Positive contributions are shown in green, while negative contributions are shown in red.  
@@ -173,21 +173,21 @@ This heatmap visualizes how each feature contributes to the three principal comp
 #### Bar Plots for Individual Principal Components
 
 - **PC1 Contributions**
-  ![PC1 Contributions](weight_pca1.png)
+  ![PC1 Contributions](images/weight_pca1.png)
 
   **Observation:**  
   - The 1-year and 200-day price changes significantly contribute to PC1.  
   - Short-term changes (e.g., 24-hour change) negatively influence this component.
 
 - **PC2 Contributions**
-  ![PC2 Contributions](weight_pca2.png)
+  ![PC2 Contributions](images/weight_pca2.png)
 
   **Observation:**  
   - PC2 is dominated by mid-term metrics like 30-day and 14-day changes.  
   - Long-term metrics (e.g., 200-day change) have a small negative influence.
 
 - **PC3 Contributions**
-  ![PC3 Contributions](weight_pca3.png)
+  ![PC3 Contributions](images/weight_pca3.png)
 
   **Observation:**  
   - The 7-day price change strongly influences PC3.  
@@ -199,7 +199,7 @@ This heatmap visualizes how each feature contributes to the three principal comp
 
 #### Scatter Plot: PCA Components (PC1 vs. PC2)
 
-![Cryptocurrency Clusters (PCA)](crypto_clusters_pca1_pca2.png)
+![Cryptocurrency Clusters (PCA)](images/crypto_clusters_pca1_pca2.png)
 
 **Description:**  
 This scatter plot visualizes the cryptocurrency clusters based on the first two principal components (PC1 and PC2). Each color represents a unique cluster identified by the K-Means algorithm.
@@ -210,7 +210,7 @@ This scatter plot visualizes the cryptocurrency clusters based on the first two 
 
 #### Scatter Plot: Raw Data (24-Hour vs. 7-Day Changes)
 
-![Cryptocurrency Clusters (Raw Data)](crypto_clusters_price_pct_24h_7day.png)
+![Cryptocurrency Clusters (Raw Data)](images/crypto_clusters_price_pct_24h_7day.png)
 
 **Description:**  
 This scatter plot visualizes clusters based on raw data, specifically the 24-hour and 7-day price changes. Colors represent different clusters.
@@ -229,7 +229,6 @@ This scatter plot visualizes clusters based on raw data, specifically the 24-hou
 
 These visualizations provide insights into cryptocurrency market behavior and enable more informed investment decisions.
 
----
 
 ---
 
