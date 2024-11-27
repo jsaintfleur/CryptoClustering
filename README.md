@@ -229,7 +229,6 @@ This scatter plot visualizes clusters based on raw data, specifically the 24-hou
 
 These visualizations provide insights into cryptocurrency market behavior and enable more informed investment decisions.
 
-
 ---
 
 ## Insights
@@ -270,6 +269,13 @@ These visualizations provide insights into cryptocurrency market behavior and en
   - Visualize cluster compositions and trends.
   - Explore feature contributions to each cluster.
   - Monitor changes in real-time as new data is integrated.
+
+---
+
+### Key Adjustments:
+1. Confirmed the optimal \( k \) values: 4 for raw data and 3 for PCA-reduced data.
+2. Verified feature influences based on PCA weights.
+3. Aligned observations with the clustering visualizations and analysis outcomes.
 
 ---
 
