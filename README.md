@@ -241,7 +241,7 @@ These visualizations provide insights into cryptocurrency market behavior and en
 
 ### Optimal Clusters
 - **Original Data**: Best \( k = 4 \). Clusters reflect short-term and long-term price changes, with well-defined separations between groups.
-- **PCA Data**: Best \( k = 3 \). Clusters emphasize broader trends, reducing noise and focusing on meaningful patterns derived from the principal components.
+- **PCA Data**: Best \( k = 4 \). Clusters emphasize broader trends, reducing noise and focusing on meaningful patterns derived from the principal components.
 
 ### Cluster Characteristics
 - **Original Clusters**: Highlight variations across short-term (e.g., 24-hour, 7-day changes) and long-term trends. Cryptocurrencies with high short-term volatility form distinct clusters.
